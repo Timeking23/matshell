@@ -48,7 +48,7 @@
     mkNativeBuildInputs = system: let
       pkgs = mkPkgs system;
     in (with pkgs; [
-      wrapGAppsHook
+      wrapGAppsHook3
       gobject-introspection
     ]);
 
