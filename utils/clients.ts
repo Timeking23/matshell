@@ -1,5 +1,5 @@
 import Apps from "gi://AstalApps?version=0.1";
-import Gio from "gi://Gio?version=2.0";
+import GioUnix from "gi://GioUnix?version=2.0";
 
 const apps = Apps.Apps.new();
 const iconCache = new Map<string, string>();
@@ -19,7 +19,7 @@ export function normalizeClassName(className: string): string {
 
 export function tryDesktopFileIcon(className: string): string | null {
   const desktopId = `${className}.desktop`;
-  let appInfo = Gio.DesktopAppInfo.new(desktopId);
+  let appInfo = GioUnix.DesktopAppInfo.new(desktopId);
 
   if (appInfo) {
     const icon = appInfo.get_icon();
