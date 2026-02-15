@@ -29,9 +29,17 @@ export class ThemeApplicator {
     }
 
     try {
-      await execAsync(
-        `${matugen} -t "${analysis.scheme}" -m "${analysis.mode}" image "${imagePath}"`,
-      );
+      await execAsync([
+        matugen,
+        "-t",
+        analysis.scheme,
+        "-m",
+        analysis.mode,
+        "--source-color-index",
+        "0",
+        "image",
+        imagePath,
+      ]);
     } catch (error) {
       console.error("Failed to run matugen:", error);
       throw error;
