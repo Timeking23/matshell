@@ -1,5 +1,6 @@
 import app from "ags/gtk4/app";
 import { Gtk } from "ags/gtk4";
+import Adw from "gi://Adw?version=1";
 import Gio from "gi://Gio?version=2.0";
 import { createBinding, With } from "ags";
 import { CavaDraw } from "widgets/music/modules/cava";
@@ -32,13 +33,15 @@ function Cover({ player }) {
           measureBox = self;
         }}
       >
-    <Gtk.Picture
-      cssClasses={["cover"]}
-      contentFit={Gtk.ContentFit.COVER}
-      file={createBinding(player, "coverArt").as((path) =>
-        Gio.file_new_for_path(path),
-      )}
-    />
+        <Adw.Clamp maximumSize={40}>
+          <Gtk.Picture
+            cssClasses={["cover"]}
+            contentFit={Gtk.ContentFit.COVER}
+            file={createBinding(player, "coverArt").as((path) =>
+              Gio.file_new_for_path(path),
+            )}
+          />
+        </Adw.Clamp>
       </box>
     </overlay>
   );
