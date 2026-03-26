@@ -20,9 +20,13 @@ const modeIcons: Record<string, string> = {
 };
 
 const refreshMode = () => {
-  execAsync(["supergfxctl", "-g"])
-    .then((out) => setActiveMode(out.trim()))
-    .catch(() => setActiveMode("Unknown"));
+  try {
+    execAsync(["supergfxctl", "-g"])
+      .then((out) => setActiveMode(out.trim()))
+      .catch(() => setActiveMode("Unknown"));
+  } catch {
+    setActiveMode("Unknown");
+  }
 };
 
 refreshMode();
