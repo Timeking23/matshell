@@ -8,6 +8,7 @@ import { HyprlandWorkspaces, RiverWorkspaces } from "./modules/Workspaces.tsx";
 import { Clients } from "./modules/Clients.tsx";
 import Mem from "./modules/Mem.tsx";
 import Cpu from "./modules/Cpu.tsx";
+import Temps from "./modules/Temps.tsx";
 import { CavaDraw } from "widgets/music/modules/cava";
 import Media from "./modules/Media.tsx";
 import { hasActivePlayers } from "utils/mpris.ts";
@@ -19,7 +20,7 @@ import options from "options.ts";
 
 function Bar({ gdkmonitor, ...props }: any) {
   const { TOP, LEFT, RIGHT, BOTTOM } = Astal.WindowAnchor;
-
+  
   const marginTop = createComputed(
     [options["bar.style"], options["bar.position"]],
     (style, position) => {
@@ -142,6 +143,7 @@ function Bar({ gdkmonitor, ...props }: any) {
             <Separator visible={hasTrayItems} />
             <Mem />
             <Cpu />
+            <Temps />
             <Separator />
             <SystemInfo />
             <Separator />

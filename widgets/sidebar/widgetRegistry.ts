@@ -1,11 +1,32 @@
 import ClockWidget from "./modules/ClockWidget";
+import CalendarWidget from "./modules/CalendarWidget";
+import NotionWidget from "./modules/NotionWidget";
 import WeatherWidget from "./modules/WeatherWidget";
+import WallpaperPickerWidget from "./modules/WallpaperPickerWidget";
 import MatshellSettingsWidget from "./modules/MatshellSettingsWidget/main";
 import HardwareMonitorWidget from "./modules/HardwareWidget/main";
 import NotesWidget from "./modules/NotesWidget";
 import type { WidgetDefinition, SidebarWidgetId } from "./types.ts";
 
 export const SIDEBAR_WIDGETS = {
+  notion: {
+    id: "notion",
+    name: "Notion",
+    icon: "Event_Note",
+    description: "Today's events from Notion",
+    component: NotionWidget,
+    separatorAfter: false,
+    canDisable: true,
+  },
+  calendar: {
+    id: "calendar",
+    name: "Calendar",
+    icon: "Calendar_Month",
+    description: "Monthly calendar",
+    component: CalendarWidget,
+    separatorAfter: true,
+    canDisable: true,
+  },
   clock: {
     id: "clock",
     name: "Clock",
@@ -48,6 +69,15 @@ export const SIDEBAR_WIDGETS = {
     icon: "Note",
     description: "Scratchpad",
     component: NotesWidget,
+    separatorAfter: false,
+    canDisable: true,
+  },
+  wallpapers: {
+    id: "wallpapers",
+    name: "Wallpapers",
+    icon: "Wallpaper",
+    description: "Wallpaper Engine picker",
+    component: WallpaperPickerWidget,
     separatorAfter: false,
     canDisable: true,
   },

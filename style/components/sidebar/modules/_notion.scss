@@ -1,0 +1,68 @@
+@use "../../../layouts" as *;
+@use "../../../abstracts" as *;
+@use "sass:color";
+
+.notion-widget {
+  @include widget-container;
+
+  .notion-header {
+    @include widget-header;
+
+    .notion-refresh {
+      background: transparent;
+      padding: $spacing-xs $spacing-sm;
+      @include rounding;
+
+      label {
+        @include material-icon(16px);
+      }
+
+      &:hover {
+        background: $buttonEnabled;
+      }
+    }
+  }
+
+  separator {
+    @include separator;
+  }
+
+  .notion-content {
+    padding: $spacing-sm;
+
+    .notion-status {
+      font-size: calc(#{$font} * 0.85);
+      color: $outline;
+      padding: $spacing-md;
+    }
+
+    .notion-error {
+      color: $red;
+    }
+
+    .notion-count {
+      font-size: calc(#{$font} * 0.75);
+      font-weight: 600;
+      color: $outline;
+      margin-bottom: $spacing-xs;
+    }
+
+    .notion-event {
+      padding: $spacing-xs $spacing-sm;
+      @include rounding;
+
+      &:hover {
+        background: $buttonEnabled;
+      }
+
+      .notion-event-icon {
+        @include material-icon(16px);
+        color: $outline;
+      }
+
+      .notion-event-title {
+        font-size: calc(#{$font} * 0.9);
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@use "../../../layouts" as *;
+@use "../../../abstracts" as *;
+@use "sass:color";
+
+.calendar-widget {
+  @include widget-container;
+
+  .calendar-header {
+    @include widget-header;
+
+    .calendar-nav {
+      background: transparent;
+      padding: $spacing-xs $spacing-sm;
+      @include rounding;
+
+      label {
+        @include material-icon(16px);
+      }
+
+      &:hover {
+        background: $buttonEnabled;
+      }
+    }
+
+    .calendar-month-label {
+      font-weight: 700;
+      font-size: $font;
+    }
+  }
+
+  separator {
+    @include separator;
+  }
+
+  .calendar-day-headers {
+    padding: $spacing-xs $spacing-sm;
+
+    .calendar-day-header {
+      font-size: calc(#{$font} * 0.75);
+      font-weight: 600;
+      color: $outline;
+    }
+  }
+
+  .calendar-grid {
+    padding: 0 $spacing-sm;
+
+    .calendar-row {
+      .calendar-day {
+        font-size: calc(#{$font} * 0.85);
+        padding: $spacing-xs;
+        border-radius: 50%;
+        min-width: 1.8rem;
+        min-height: 1.8rem;
+      }
+
+      .calendar-day-dim {
+        color: $outline;
+        opacity: 0.4;
+      }
+
+      .calendar-day-today {
+        background: $buttonEnabled;
+        color: $fg;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .calendar-today-btn {
+    @include rounding;
+    background: transparent;
+    padding: $spacing-xs $spacing-md;
+    font-size: calc(#{$font} * 0.85);
+    margin-top: $spacing-xs;
+
+    &:hover {
+      background: $buttonEnabled;
+    }
+  }
+}

@@ -64,16 +64,17 @@ async function fetchWeather(): Promise<WeatherData> {
   }
 
   const json = await response.json();
+  const data = json.data ?? json;
 
   const weatherData: WeatherData = {
-    current: json.current_condition[0]
+    current: data.current_condition?.[0]
       ? {
-          ...json.current_condition[0],
-          tempC: json.current_condition[0].temp_C,
-          tempF: json.current_condition[0].temp_F,
+          ...data.current_condition[0],
+          tempC: data.current_condition[0].temp_C,
+          tempF: data.current_condition[0].temp_F,
         }
       : null,
-    forecast: json.weather || [],
+    forecast: data.weather || [],
   };
 
   setCachedWeather(weatherData);

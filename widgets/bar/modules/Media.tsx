@@ -47,6 +47,7 @@ function Cover({ player }) {
   );
 }
 
+
 function Title({ player }) {
   return (
     <label

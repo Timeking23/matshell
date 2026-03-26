@@ -9,23 +9,32 @@ export interface WidgetDefinition {
 }
 
 export type SidebarWidgetId =
+  | "notion"
+  | "calendar"
   | "clock"
   | "weather"
   | "settings"
   | "hardware"
-  | "notes";
+  | "notes"
+  | "wallpapers";
 
 export const DEFAULT_WIDGET_ORDER: SidebarWidgetId[] = [
+  "notion",
+  "calendar",
   "clock",
   "weather",
+  "wallpapers",
   "settings",
   "hardware",
   "notes",
 ];
 
 export const DEFAULT_ENABLED_WIDGETS: SidebarWidgetId[] = [
+  "notion",
+  "calendar",
   "clock",
   "weather",
+  "wallpapers",
   "settings",
   "hardware",
 ];

@@ -34,7 +34,7 @@ function ExtraWeatherInfoBox({ icon, value }: ExtraWeatherInfoProps) {
 }
 function ForecastItem({ block }: ForecastItemProps) {
   const icon = getIcon(block.weatherDesc?.[0]?.value ?? "");
-  const temp = block.tempC ?? "?"; // Use tempC from API
+  const temp = block.tempF ?? "?"; // Use tempF from API
   const time = formatBlockTime(block.time ?? "0");
 
   return (
@@ -72,13 +72,13 @@ export default function WeatherWidget() {
           ));
 
           const currentIcon = getIcon(current.weatherDesc?.[0]?.value ?? "");
-          const currentTemp = current.tempC ?? "?";
-          const wind = current.windspeedKmph ?? "?";
+          const currentTemp = current.tempF ?? "?";
+          const wind = current.windspeedMiles ?? "?";
           const rainPct = current.precipitation ?? current.humidity ?? "?";
 
           const extraWeatherData = [
-            { icon: "Thermometer", value: `${currentTemp}°C` },
-            { icon: "Air", value: `${wind} km/h` },
+            { icon: "Thermometer", value: `${currentTemp}°F` },
+            { icon: "Air", value: `${wind} mph` },
             { icon: "Rainy", value: `${rainPct}%` },
           ];
 

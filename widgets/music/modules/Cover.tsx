@@ -1,16 +1,19 @@
 import { Gtk } from "ags/gtk4";
+import Adw from "gi://Adw?version=1";
 import Gio from "gi://Gio?version=2.0";
 import Mpris from "gi://AstalMpris";
 import { createBinding } from "ags";
 
 export function Cover({ player }: { player: Mpris.Player }) {
   return (
-    <Gtk.Picture
-      cssClasses={["cover"]}
-      contentFit={Gtk.ContentFit.COVER}
-      file={createBinding(player, "coverArt").as((path) =>
-        Gio.file_new_for_path(path),
-      )}
-    />
+    <Adw.Clamp maximumSize={200} hexpand={false} vexpand={false}>
+      <Gtk.Picture
+        cssClasses={["cover"]}
+        contentFit={Gtk.ContentFit.COVER}
+        file={createBinding(player, "coverArt").as((path) =>
+          Gio.file_new_for_path(path),
+        )}
+      />
+    </Adw.Clamp>
   );
 }

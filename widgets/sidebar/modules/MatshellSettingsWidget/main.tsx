@@ -1,5 +1,6 @@
 import { Gtk } from "ags/gtk4";
 import { createState, onCleanup } from "ags";
+import { execAsync } from "ags/process";
 import { CenteredDropDown } from "widgets/common/CenteredDropDown";
 import {
   OptionSelectProps,
@@ -143,6 +144,34 @@ export default function MatshellSettingsWidget() {
                 label="OS Icon"
                 choices={OS_OPTIONS}
               />
+              <box cssClasses={["option-row"]}>
+                <button
+                  cssClasses={["option-switch"]}
+                  onClicked={async () => {
+                    try {
+                      const result = await execAsync([
+                        "zenity", "--file-selection",
+                        "--title=Select Icon Image",
+                        "--file-filter=Images | *.png *.jpg *.jpeg *.webp",
+                      ]);
+                      const path = result.trim();
+                      if (path) {
+                        options["bar.modules.os-icon.type"].value = path;
+                      }
+                    } catch {
+                      // user cancelled
+                    }
+                  }}
+                >
+                  <label label="Image_Search" cssClasses={["nav-icon"]} />
+                </button>
+                <label
+                  label="Custom Icon"
+                  halign={Gtk.Align.END}
+                  hexpand
+                  cssClasses={["option-label"]}
+                />
+              </box>
               <OptionToggle
                 option="bar.modules.clients.enable"
                 label="Enable Hypr Clients"

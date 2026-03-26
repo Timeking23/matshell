@@ -131,7 +131,7 @@ export default class SystemMonitor extends GObject.Object {
   }
 
   private async sendHardwareNotification(
-    type: "temperature" | "memory",
+    type: "temperature"| "memory",
     component: string,
     value: number,
     replaceId: number,

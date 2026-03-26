@@ -46,28 +46,26 @@ export default function Sidebar(
         vexpand={true}
       >
         {/* Dynamic widgets */}
-        <box orientation={Gtk.Orientation.VERTICAL}>
-          <For each={filteredWidgets}>
-            {(widgetId, index) => {
-              const widgetDef = SIDEBAR_WIDGETS[widgetId];
-              if (!widgetDef) return <box />;
-
-              const Component = widgetDef.component;
-              const showSeparator =
-                (widgetDef.separatorAfter ?? false) &&
-                index.get() < filteredWidgets.get().length - 1;
-
-              return (
-                <box orientation={Gtk.Orientation.VERTICAL} spacing={0}>
-                  <Component />
-                  {showSeparator && <Gtk.Separator />}
-                </box>
-              );
-            }}
-          </For>
-        </box>
-
-        <box vexpand />
+        <scrolledwindow vexpand={true} hscrollbarPolicy={Gtk.PolicyType.NEVER}>
+          <box orientation={Gtk.Orientation.VERTICAL}>
+            <For each={filteredWidgets}>
+              {(widgetId, index) => {
+                const widgetDef = SIDEBAR_WIDGETS[widgetId];
+                if (!widgetDef) return <box />;
+                const Component = widgetDef.component;
+                const showSeparator =
+                  (widgetDef.separatorAfter ?? false) &&
+                  index.get() < filteredWidgets.get().length - 1;
+                return (
+                  <box orientation={Gtk.Orientation.VERTICAL} spacing={0}>
+                    <Component />
+                    {showSeparator && <Gtk.Separator />}
+                  </box>
+                );
+              }}
+            </For>
+          </box>
+        </scrolledwindow>
         <QuickActionsWidget />
         {children}
       </box>

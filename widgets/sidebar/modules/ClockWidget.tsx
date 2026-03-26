@@ -30,6 +30,24 @@ function DigitStack(index: number) {
   );
 }
 
+function PeriodLabel() {
+  return (
+    <label
+      class="period-label"
+      halign={Gtk.Align.CENTER}
+      valign={Gtk.Align.END}
+      $={(self) => (
+        <With value={currentTimeString}>
+          {(time) => {
+            self.label = (time ?? "12:00:00 AM").slice(-2);
+            return null;
+          }}
+        </With>
+      )}
+    />
+  );
+}
+
 function TimeDisplay() {
   return (
     <box spacing={4} halign={Gtk.Align.CENTER}>
@@ -41,6 +59,7 @@ function TimeDisplay() {
       <label class="colon" label=":" />
       {DigitStack(6)}
       {DigitStack(7)}
+      <PeriodLabel />
     </box>
   );
 }

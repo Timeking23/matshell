@@ -7,6 +7,9 @@
 @use "./modules/weather.scss";
 @use "./modules/widgets.scss";
 @use "./modules/hardware.scss";
+@use "./modules/calendar.scss";
+@use "./modules/notion.scss";
+@use "./modules/wallpaper.scss";
 
 
 .sidebar {
@@ -15,17 +18,19 @@
   @include light-mode-shadow;
   min-width: 300px;
   margin: $spacing-md;
+  
 
   & > box {
     @include window-box;
     @include border;
     @include light-mode-shadow;
+    
   }
 
   separator {
     background-color: color.adjust($fg, $alpha: -0.8);
     margin: 0.5rem 0;
-    min-height: 1px;
+    min-height: 0.1px;
   }
 
   image {

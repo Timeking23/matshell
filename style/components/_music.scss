@@ -3,37 +3,49 @@
 
 .music.window {
   @include window;
-  background: none;
-  padding: 0rem;
+  background: rgb(0, 0, 0);
+  padding: 0.5rem 0.5rem;
   margin-top: $spacing-md;
+  filter: blur(0px);
+  border-radius: 16px;
 
   .cover {
     background-position: center;
     background-size: cover;
-    border-radius: $round2;
-    box-shadow: 0 1px 2px -1px $bg;
-    margin: $spacing-sm;
-    min-height: 13rem;
-    min-width: 13rem;
-    opacity: 0.9;
+    border-radius: 16px;
+    margin: 0.3rem;
+    min-height: 3rem;
+    min-width: 3rem;
+    opacity: 0.8;
+    box-shadow: 0 0 20px 5px rgba(0, 150, 255, 0.7);
   }
+
+  .cover-glow {
+      background-color: rgba(0, 150, 255, 0.5);
+      border-radius: 9999px;
+      filter: blur(15px); // soft glow
+      opacity: 0.5;       // default, reactive opacity in TSX
+    }
+
   .blurred-cover {
-    border-radius: $round;
+    border-radius: 16px;
     opacity: 0.8;
   }
+
   .cava-container {
     cava {
       opacity: 0.2;
+      min-width: 3.5rem;
+      min-height: 3.5rem;
     }
   }
 }
 
 .music.window .info {
-  margin: $spacing-md;
+  margin: 0 0.4rem;
 
-  label,
-  scale {
-    margin: 0.3rem 0;
+  label {
+    margin: 0.1rem 0;
   }
 
   // Always use light colors on player text and controls.
@@ -46,21 +58,10 @@
     }
   }
 
-  label.position,
-  label.length {
-    font-size: 0.8rem;
-    margin-bottom: 0;
-  }
-
-  scale {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
   .title {
-    font-size: 1.5rem;
+    font-size: 0.95rem;
     font-weight: bold;
-    min-width: 14rem;
+    min-width: 6rem;
   }
 }
 

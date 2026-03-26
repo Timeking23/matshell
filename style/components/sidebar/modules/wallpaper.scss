@@ -1,0 +1,81 @@
+@use "../../../abstracts" as *;
+@use "sass:color";
+
+.wp-picker {
+  padding: $spacing-md;
+
+  .wp-header {
+    margin-bottom: $spacing-sm;
+
+    .wp-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .wp-status {
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+  }
+
+  .wp-scroll {
+    min-height: 140px;
+    border-radius: $round2;
+  }
+
+  .wp-list {
+    padding: $spacing-xs;
+  }
+
+  .wp-thumb {
+    border-radius: $round;
+    padding: 0;
+    background: transparent;
+    border: 2px solid transparent;
+    transition: 200ms ease;
+
+    &:hover {
+      border-color: color.adjust($primaryMon, $alpha: -0.5);
+      filter: drop-shadow(0 0 6px rgba(45, 125, 210, 0.4));
+    }
+
+    &.active {
+      border-color: $primaryMon;
+      filter: drop-shadow(0 0 8px rgba(77, 163, 255, 0.6));
+    }
+
+    .wp-thumb-img {
+      border-radius: $round;
+      -gtk-icon-size: 8rem;
+    }
+  }
+
+  .wp-empty {
+    opacity: 0.5;
+    padding: $spacing-md;
+    font-size: 0.9rem;
+  }
+
+  .wp-actions {
+    margin-top: $spacing-sm;
+
+    button {
+      border-radius: $round;
+      padding: $spacing-xs $spacing-sm;
+      background: $surface;
+      transition: 200ms ease;
+
+      &:hover {
+        background: color.adjust($surface, $alpha: +0.1);
+      }
+
+      image {
+        -gtk-icon-size: 1rem;
+      }
+
+      label {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

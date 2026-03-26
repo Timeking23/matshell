@@ -16,7 +16,7 @@ $accent_green: #afbea2;
 $tooltipBg: $background;
 $fg: $on_background;
 $bg: color.adjust($background, $alpha: -0.5);
-$barBg: color.adjust($background, $alpha: -0.5);
+$barBg: color.adjust($background, $alpha: -1);
 $surface: color.adjust($surface_bright, $alpha: -0.4);
 $overlay: color.adjust($on_surface, $alpha: -0.25);
 $accent: $tertiary_container;

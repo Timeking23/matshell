@@ -6,6 +6,9 @@ import { Sliders } from "./modules/Sliders.tsx";
 import { Toggles } from "./modules/Toggles.tsx";
 import { PowerProfileBox } from "./modules/PowerProfileBox.tsx";
 import { BatteryBox } from "./modules/BatteryBox.tsx";
+import { AsusProfileBox } from "./modules/AsusProfileBox.tsx";
+import { GpuModeBox } from "./modules/GpuModeBox.tsx";
+import { RefreshRateBox } from "./modules/RefreshRateBox.tsx";
 import options from "options.ts";
 import { gdkmonitor } from "utils/monitors.ts";
 
@@ -46,6 +49,9 @@ export default function SystemMenu() {
       >
         <Toggles />
         {hasProfiles && <PowerProfileBox />}
+        <AsusProfileBox />
+        <GpuModeBox />
+        <RefreshRateBox />
         <Sliders />
         <BatteryBox />
       </box>
