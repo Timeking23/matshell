@@ -211,6 +211,7 @@ install_dependencies() {
         ["cliphist"]="cliphist"
         ["wl-clipboard"]="wl-clipboard"
         ["imagemagick"]="imagemagick"
+        ["zenity"]="zenity"
         ["networkmanager"]="networkmanager"
         ["wireplumber"]="wireplumber"
         ["adwaita-icon-theme"]="adwaita-icon-theme"

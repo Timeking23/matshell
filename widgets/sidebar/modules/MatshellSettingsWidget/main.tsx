@@ -1,6 +1,7 @@
 import { Gtk } from "ags/gtk4";
 import { createState, onCleanup } from "ags";
 import { execAsync } from "ags/process";
+import GLib from "gi://GLib?version=2.0";
 import { CenteredDropDown } from "widgets/common/CenteredDropDown";
 import {
   OptionSelectProps,
@@ -152,12 +153,22 @@ export default function MatshellSettingsWidget() {
                       const result = await execAsync([
                         "zenity", "--file-selection",
                         "--title=Select Icon Image",
-                        "--file-filter=Images | *.png *.jpg *.jpeg *.webp",
+                        "--file-filter=Images | *.png *.jpg *.jpeg *.webp *.gif",
                       ]);
-                      const path = result.trim();
-                      if (path) {
-                        options["bar.modules.os-icon.type"].value = path;
-                      }
+                      const selectedPath = result.trim();
+                      if (!selectedPath) return;
+
+                      const cacheDir = `${GLib.get_home_dir()}/.cache/ags`;
+                      const iconPath = `${cacheDir}/custom-icon.png`;
+
+                      await execAsync(["mkdir", "-p", cacheDir]).catch(() => {});
+                      await execAsync([
+                        "magick", `${selectedPath}[0]`, iconPath,
+                      ]).catch(() =>
+                        execAsync(["ffmpeg", "-y", "-i", selectedPath, "-frames:v", "1", iconPath])
+                      ).catch(() => {});
+
+                      options["bar.modules.os-icon.type"].value = iconPath;
                     } catch {
                       // user cancelled
                     }
