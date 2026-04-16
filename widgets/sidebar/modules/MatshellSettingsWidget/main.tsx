@@ -248,6 +248,26 @@ export default function MatshellSettingsWidget() {
             option="system-menu.modules.bluetooth-advanced.enable"
             label="BT Adv. Settings"
           />
+          <box cssClasses={["option-row"]}>
+            <Gtk.Scale
+              hexpand={true}
+              drawValue={false}
+              orientation={Gtk.Orientation.HORIZONTAL}
+              $={(self: Gtk.Scale) => {
+                self.set_range(0, 2);
+                self.set_value(options["bloom.brightness"].get());
+                self.set_increments(0.05, 0.25);
+                self.connect("value-changed", () => {
+                  options["bloom.brightness"].value = self.get_value();
+                });
+              }}
+            />
+            <label
+              label="Bloom"
+              halign={Gtk.Align.END}
+              cssClasses={["option-label"]}
+            />
+          </box>
         </box>
         <box $type="named" name="widgets">
           <WidgetManagerPage />

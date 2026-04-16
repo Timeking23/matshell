@@ -129,8 +129,7 @@ export class WallpaperStore extends GObject.Object {
       throw new Error("Could not get file path for wallpaper");
     }
 
-    const currentWallpaper = this.settings.current.get();
-    if (currentWallpaper === imagePath) return;
+    if (this.currentWallpaperPath === imagePath) return;
 
     const result = await this.wallpaperSetter.setWallpaper(imagePath);
 
@@ -142,7 +141,6 @@ export class WallpaperStore extends GObject.Object {
     this.currentWallpaperPath = imagePath;
 
     this.emit("wallpaper-set", imagePath);
-    this.scheduleThemeUpdate(imagePath);
   }
 
   async setRandomWallpaper(): Promise<void> {

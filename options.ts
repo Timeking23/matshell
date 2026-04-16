@@ -54,6 +54,7 @@ const options = initializeConfig(
     ),
     "system-menu.modules.bluetooth-advanced.enable": defineOption(true),
     "system-menu.modules.wifi-advanced.enable": defineOption(true),
+    "bloom.brightness": defineOption(1.0),
     "wallpaper.dir": defineOption(`${GLib.get_home_dir()}/Pictures/wallpapers`),
     "wallpaper.cache-size": defineOption(50),
     "wallpaper.theme.cache-size": defineOption(100),

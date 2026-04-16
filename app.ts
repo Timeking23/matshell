@@ -2,7 +2,11 @@ import app from "ags/gtk4/app";
 import { exec } from "ags/process";
 import { monitorFile } from "ags/file";
 import GLib from "gi://GLib?version=2.0";
+import Gio from "gi://Gio?version=2.0";
 import { picker } from "utils/picker";
+import { getWallpaperStore } from "utils/wallpaper";
+import { applyBloom } from "utils/bloomCSS";
+import options from "options";
 
 // Widgets
 import {
@@ -14,6 +18,8 @@ import {
   PickerWindow,
   MusicPlayer,
   Sidebar,
+  CompanionPopup,
+  toggleSidebar,
 } from "./widgets";
 
 // Style paths
@@ -44,7 +50,7 @@ app.start({
         res("logout menu toggled");
         break;
       case "sidebar":
-        app.toggle_window("sidebar");
+        toggleSidebar();
         res("sidebar toggled");
         break;
       case "reload-css":
@@ -66,6 +72,18 @@ app.start({
       monitorFile(`${GLib.get_user_config_dir()}/ags/style/${dir}`, reloadCss),
     );
 
+    // Apply bloom brightness
+    applyBloom(options["bloom.brightness"].get());
+    options["bloom.brightness"].subscribe(applyBloom);
+
+    // Restore wallpaper from last session
+    const savedWallpaper = options["wallpaper.current"].get();
+    if (savedWallpaper && GLib.file_test(savedWallpaper, GLib.FileTest.EXISTS)) {
+      getWallpaperStore()
+        .setWallpaper(Gio.file_new_for_path(savedWallpaper))
+        .catch((e: unknown) => console.error("Failed to restore wallpaper:", e));
+    }
+
     // Initialize widgets
     Bar();
     Notifications();
@@ -75,5 +93,6 @@ app.start({
     PickerWindow();
     LogoutMenu();
     Sidebar();
+    CompanionPopup();
   },
 });
